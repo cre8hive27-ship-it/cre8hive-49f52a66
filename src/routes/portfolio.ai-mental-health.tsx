@@ -75,11 +75,38 @@ export const Route = createFileRoute("/portfolio/ai-mental-health")({
         property: "og:url",
         content: "https://cre8hive.lovable.app/portfolio/ai-mental-health",
       },
+      { property: "og:image", content: hero },
+      {
+        name: "twitter:title",
+        content: "AI Mental Health & Therapy Practice — Cre8Hive Case Study",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "A modern AI-powered therapy practice website with booking, therapist profiles and mood tracking.",
+      },
+      { name: "twitter:image", content: hero },
     ],
     links: [
       {
         rel: "canonical",
         href: "https://cre8hive.lovable.app/portfolio/ai-mental-health",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline:
+            "AI Mental Health & Therapy Practice Website — Cre8Hive Case Study",
+          image: hero,
+          author: { "@type": "Organization", name: "Cre8Hive" },
+          publisher: { "@type": "Organization", name: "Cre8Hive" },
+          mainEntityOfPage:
+            "https://cre8hive.lovable.app/portfolio/ai-mental-health",
+        }),
       },
     ],
   }),
