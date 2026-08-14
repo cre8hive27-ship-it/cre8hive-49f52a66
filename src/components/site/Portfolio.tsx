@@ -43,6 +43,15 @@ const projects: Project[] = [
     tech: ["Lovable", "React", "TypeScript", "Tailwind CSS"],
   },
   {
+    img: pKitchenArtistry,
+    category: "Website • Restaurant • Fine Dining",
+    title: "Kitchen Artistry Web",
+    desc: "A sophisticated, atmospheric website for a fine-dining restaurant with elegant typography, immersive imagery and a reservation-ready layout.",
+    liveUrl: "https://kitchen-artistry-web.lovable.app",
+    liveLabel: "View Live Project",
+    tech: ["Lovable", "React", "TypeScript", "Tailwind CSS"],
+  },
+  {
     img: p1,
     category: "Healthcare • Mental Health • Therapy • AI Web Application",
     title: "AI Mental Health & Therapy Practice Website Built with Lovable AI",
