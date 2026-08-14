@@ -1,5 +1,8 @@
+import { useMemo, useState } from "react";
 import { ArrowUpRight, ExternalLink, FileText } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
+
 import { Reveal } from "@/components/Reveal";
 import gentlePathAsset from "@/assets/gentle-path-hero.jpg.asset.json";
 import noorAsset from "@/assets/noor-al-hidayah-hero.jpg.asset.json";
@@ -30,6 +33,8 @@ type Project = {
   liveLabel?: string;
   caseStudyTo?: string;
   tech?: string[];
+  services: string[];
+  industry: string;
 };
 
 const projects: Project[] = [
@@ -37,6 +42,8 @@ const projects: Project[] = [
     img: pSmooth,
     category: "UI/UX • Frontend Development • Design Replication",
     title: "Smooth Design Replicator",
+    services: ["UI/UX Design", "Website Development"],
+    industry: "SaaS & Startups",
     desc: "A pixel-perfect recreation of a modern landing page built with Lovable — responsive, production-ready, and finely tuned for smooth interactions and excellent UX.",
     liveUrl: "https://smooth-design-replicator.lovable.app",
     liveLabel: "View Live Demo",
@@ -46,6 +53,8 @@ const projects: Project[] = [
     img: pKitchenArtistry,
     category: "Website • Restaurant • Fine Dining",
     title: "Kitchen Artistry Web",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "Food & Hospitality",
     desc: "A sophisticated, atmospheric website for a fine-dining restaurant with elegant typography, immersive imagery and a reservation-ready layout.",
     liveUrl: "https://kitchen-artistry-web.lovable.app",
     liveLabel: "View Live Project",
@@ -55,6 +64,8 @@ const projects: Project[] = [
     img: p1,
     category: "Healthcare • Mental Health • Therapy • AI Web Application",
     title: "AI Mental Health & Therapy Practice Website Built with Lovable AI",
+    services: ["Website Development", "AI Automation"],
+    industry: "Healthcare",
     desc: "A calming, AI-powered website for a private therapy practice with booking, therapist profiles and mood tracking.",
     liveUrl: "https://gentle-path-create.lovable.app/",
     caseStudyTo: "/portfolio/ai-mental-health",
@@ -63,6 +74,8 @@ const projects: Project[] = [
     img: pNoor,
     category: "Website Development",
     title: "Noor Al-Hidayah Portal",
+    services: ["Website Development"],
+    industry: "Education",
     desc: "A modern Islamic education and community platform for students, teachers, and administrators.",
     liveUrl: "https://noor-al-hidayah-portal.lovable.app",
   },
@@ -70,6 +83,8 @@ const projects: Project[] = [
     img: pNeatNote,
     category: "Landing Page",
     title: "Neat Note",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "SaaS & Startups",
     desc: "A modern, minimal landing page for a distraction-free note-taking app.",
     liveUrl: "https://neat-note-home.lovable.app",
   },
@@ -77,6 +92,8 @@ const projects: Project[] = [
     img: pDeenFlow,
     category: "Web Application",
     title: "Deen Flow",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "Faith & Community",
     desc: "A modern Islamic productivity and habit-tracking web app for daily worship and personal goals.",
     liveUrl: "https://deen-flow-app.lovable.app",
   },
@@ -84,6 +101,8 @@ const projects: Project[] = [
     img: pNiyyahCore,
     category: "Web Application",
     title: "Niyyah Core",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "Faith & Community",
     desc: "A modern Islamic web application that helps Muslims build consistent worship habits through daily reflection and intentional spiritual growth.",
     liveUrl: "https://niyyah-core.lovable.app",
   },
@@ -91,29 +110,99 @@ const projects: Project[] = [
     img: p3,
     category: "Mobile App",
     title: "Muni Finance",
+    services: ["Mobile App Development", "UI/UX Design"],
+    industry: "Finance",
     desc: "A minimal, fast personal finance app for iOS & Android.",
   },
   {
     img: p4,
     category: "AI Automation",
     title: "Asalon Workflows",
+    services: ["AI Automation"],
+    industry: "SaaS & Startups",
     desc: "Visual AI workflow builder saving 20+ hours a week.",
   },
   {
     img: p5,
     category: "Website",
     title: "Marta Filly Kitchen",
+    services: ["Website Development"],
+    industry: "Food & Hospitality",
     desc: "Story-driven restaurant site with reservations.",
   },
   {
     img: p6,
     category: "Branding",
     title: "The Naide Identity",
+    services: ["Brand Identity"],
+    industry: "Creative & Studio",
     desc: "A complete brand system for a luxury studio.",
   },
 ];
 
+const ALL = "All";
+
+const serviceOptions = [
+  ALL,
+  ...Array.from(new Set(projects.flatMap((p) => p.services))).sort(),
+];
+const industryOptions = [
+  ALL,
+  ...Array.from(new Set(projects.map((p) => p.industry))).sort(),
+];
+
+function FilterGroup({
+  label,
+  options,
+  active,
+  onChange,
+}: {
+  label: string;
+  options: string[];
+  active: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div>
+      <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+        {label}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={label}>
+        {options.map((o) => (
+          <button
+            key={o}
+            type="button"
+            aria-pressed={active === o}
+            onClick={() => onChange(o)}
+            className={cn(
+              "rounded-full border px-4 py-1.5 text-xs font-medium transition-colors",
+              active === o
+                ? "border-foreground bg-foreground text-background"
+                : "border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+            )}
+          >
+            {o}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Portfolio() {
+  const [service, setService] = useState(ALL);
+  const [industry, setIndustry] = useState(ALL);
+
+  const filtered = useMemo(
+    () =>
+      projects.filter(
+        (p) =>
+          (service === ALL || p.services.includes(service)) &&
+          (industry === ALL || p.industry === industry),
+      ),
+    [service, industry],
+  );
+
   return (
     <section id="portfolio" className="bg-muted/40 py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -131,8 +220,28 @@ export function Portfolio() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p, i) => {
+        <Reveal className="mt-12 flex flex-col gap-6 sm:flex-row sm:gap-12">
+          <FilterGroup
+            label="Service"
+            options={serviceOptions}
+            active={service}
+            onChange={setService}
+          />
+          <FilterGroup
+            label="Industry"
+            options={industryOptions}
+            active={industry}
+            onChange={setIndustry}
+          />
+        </Reveal>
+
+        <p className="mt-6 text-sm text-muted-foreground" aria-live="polite">
+          Showing {filtered.length} of {projects.length} projects
+        </p>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((p, i) => {
+
             const hasLive = Boolean(p.liveUrl);
             const CardWrapper = ({ children }: { children: React.ReactNode }) =>
               hasLive ? (
