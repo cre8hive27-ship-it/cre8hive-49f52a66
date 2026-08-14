@@ -7,6 +7,7 @@ import neatNoteAsset from "@/assets/neat-note-hero.jpg.asset.json";
 import deenFlowAsset from "@/assets/deen-flow-hero.jpg.asset.json";
 import niyyahCoreAsset from "@/assets/niyyah-core-hero.jpg.asset.json";
 import smoothAsset from "@/assets/smooth-design-replicator-hero.jpg.asset.json";
+import kitchenArtistryAsset from "@/assets/kitchen-artistry-hero.jpg.asset.json";
 import p3 from "@/assets/portfolio-3.jpg";
 import p4 from "@/assets/portfolio-4.jpg";
 import p5 from "@/assets/portfolio-5.jpg";
@@ -18,6 +19,7 @@ const pNeatNote = neatNoteAsset.url;
 const pDeenFlow = deenFlowAsset.url;
 const pNiyyahCore = niyyahCoreAsset.url;
 const pSmooth = smoothAsset.url;
+const pKitchenArtistry = kitchenArtistryAsset.url;
 
 type Project = {
   img: string;
@@ -38,6 +40,15 @@ const projects: Project[] = [
     desc: "A pixel-perfect recreation of a modern landing page built with Lovable — responsive, production-ready, and finely tuned for smooth interactions and excellent UX.",
     liveUrl: "https://smooth-design-replicator.lovable.app",
     liveLabel: "View Live Demo",
+    tech: ["Lovable", "React", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    img: pKitchenArtistry,
+    category: "Website • Restaurant • Fine Dining",
+    title: "Kitchen Artistry Web",
+    desc: "A sophisticated, atmospheric website for a fine-dining restaurant with elegant typography, immersive imagery and a reservation-ready layout.",
+    liveUrl: "https://kitchen-artistry-web.lovable.app",
+    liveLabel: "View Live Project",
     tech: ["Lovable", "React", "TypeScript", "Tailwind CSS"],
   },
   {
