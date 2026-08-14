@@ -86,20 +86,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Cre8Hive is a modern digital agency building AI-powered websites, apps, automations and brands that grow your business.",
       },
       { name: "author", content: "Cre8Hive" },
-      { property: "og:title", content: "Cre8Hive — Create • Build • Grow" },
-      {
-        property: "og:description",
-        content:
-          "AI-powered websites, apps, automations and brands. Ship in weeks, not quarters.",
-      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "Cre8Hive" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cre8Hive — Create • Build • Grow" },
-      { name: "description", content: "Cre8Hive is a modern digital agency building AI-powered websites, apps, automations and brands that grow your business." },
-      { property: "og:description", content: "Cre8Hive is a modern digital agency building AI-powered websites, apps, automations and brands that grow your business." },
-      { name: "twitter:description", content: "Cre8Hive is a modern digital agency building AI-powered websites, apps, automations and brands that grow your business." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2fcfbf98-d8d7-433c-add8-f11cca4b638d/id-preview-258aef1c--9e97f157-30c2-4998-857b-657f13985606.lovable.app-1783385867378.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2fcfbf98-d8d7-433c-add8-f11cca4b638d/id-preview-258aef1c--9e97f157-30c2-4998-857b-657f13985606.lovable.app-1783385867378.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Cre8Hive",
+          url: "https://cre8hive.lovable.app",
+          slogan: "Create • Build • Grow",
+          description:
+            "Digital agency building AI-powered websites, apps, automations and brands.",
+          email: "hello@cre8hive.com",
+        }),
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
