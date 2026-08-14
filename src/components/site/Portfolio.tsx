@@ -140,7 +140,69 @@ const projects: Project[] = [
   },
 ];
 
+const ALL = "All";
+
+const serviceOptions = [
+  ALL,
+  ...Array.from(new Set(projects.flatMap((p) => p.services))).sort(),
+];
+const industryOptions = [
+  ALL,
+  ...Array.from(new Set(projects.map((p) => p.industry))).sort(),
+];
+
+function FilterGroup({
+  label,
+  options,
+  active,
+  onChange,
+}: {
+  label: string;
+  options: string[];
+  active: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div>
+      <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
+        {label}
+      </p>
+      <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={label}>
+        {options.map((o) => (
+          <button
+            key={o}
+            type="button"
+            aria-pressed={active === o}
+            onClick={() => onChange(o)}
+            className={cn(
+              "rounded-full border px-4 py-1.5 text-xs font-medium transition-colors",
+              active === o
+                ? "border-foreground bg-foreground text-background"
+                : "border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+            )}
+          >
+            {o}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Portfolio() {
+  const [service, setService] = useState(ALL);
+  const [industry, setIndustry] = useState(ALL);
+
+  const filtered = useMemo(
+    () =>
+      projects.filter(
+        (p) =>
+          (service === ALL || p.services.includes(service)) &&
+          (industry === ALL || p.industry === industry),
+      ),
+    [service, industry],
+  );
+
   return (
     <section id="portfolio" className="bg-muted/40 py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -158,8 +220,28 @@ export function Portfolio() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p, i) => {
+        <Reveal className="mt-12 flex flex-col gap-6 sm:flex-row sm:gap-12">
+          <FilterGroup
+            label="Service"
+            options={serviceOptions}
+            active={service}
+            onChange={setService}
+          />
+          <FilterGroup
+            label="Industry"
+            options={industryOptions}
+            active={industry}
+            onChange={setIndustry}
+          />
+        </Reveal>
+
+        <p className="mt-6 text-sm text-muted-foreground" aria-live="polite">
+          Showing {filtered.length} of {projects.length} projects
+        </p>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {filtered.map((p, i) => {
+
             const hasLive = Boolean(p.liveUrl);
             const CardWrapper = ({ children }: { children: React.ReactNode }) =>
               hasLive ? (
