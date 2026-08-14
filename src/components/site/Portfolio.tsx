@@ -33,6 +33,8 @@ type Project = {
   liveLabel?: string;
   caseStudyTo?: string;
   tech?: string[];
+  services: string[];
+  industry: string;
 };
 
 const projects: Project[] = [
@@ -40,6 +42,8 @@ const projects: Project[] = [
     img: pSmooth,
     category: "UI/UX • Frontend Development • Design Replication",
     title: "Smooth Design Replicator",
+    services: ["UI/UX Design", "Website Development"],
+    industry: "SaaS & Startups",
     desc: "A pixel-perfect recreation of a modern landing page built with Lovable — responsive, production-ready, and finely tuned for smooth interactions and excellent UX.",
     liveUrl: "https://smooth-design-replicator.lovable.app",
     liveLabel: "View Live Demo",
@@ -49,6 +53,8 @@ const projects: Project[] = [
     img: pKitchenArtistry,
     category: "Website • Restaurant • Fine Dining",
     title: "Kitchen Artistry Web",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "Food & Hospitality",
     desc: "A sophisticated, atmospheric website for a fine-dining restaurant with elegant typography, immersive imagery and a reservation-ready layout.",
     liveUrl: "https://kitchen-artistry-web.lovable.app",
     liveLabel: "View Live Project",
@@ -58,6 +64,8 @@ const projects: Project[] = [
     img: p1,
     category: "Healthcare • Mental Health • Therapy • AI Web Application",
     title: "AI Mental Health & Therapy Practice Website Built with Lovable AI",
+    services: ["Website Development", "AI Automation"],
+    industry: "Healthcare",
     desc: "A calming, AI-powered website for a private therapy practice with booking, therapist profiles and mood tracking.",
     liveUrl: "https://gentle-path-create.lovable.app/",
     caseStudyTo: "/portfolio/ai-mental-health",
@@ -66,6 +74,8 @@ const projects: Project[] = [
     img: pNoor,
     category: "Website Development",
     title: "Noor Al-Hidayah Portal",
+    services: ["Website Development"],
+    industry: "Education",
     desc: "A modern Islamic education and community platform for students, teachers, and administrators.",
     liveUrl: "https://noor-al-hidayah-portal.lovable.app",
   },
@@ -73,6 +83,8 @@ const projects: Project[] = [
     img: pNeatNote,
     category: "Landing Page",
     title: "Neat Note",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "SaaS & Startups",
     desc: "A modern, minimal landing page for a distraction-free note-taking app.",
     liveUrl: "https://neat-note-home.lovable.app",
   },
@@ -80,6 +92,8 @@ const projects: Project[] = [
     img: pDeenFlow,
     category: "Web Application",
     title: "Deen Flow",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "Faith & Community",
     desc: "A modern Islamic productivity and habit-tracking web app for daily worship and personal goals.",
     liveUrl: "https://deen-flow-app.lovable.app",
   },
@@ -87,6 +101,8 @@ const projects: Project[] = [
     img: pNiyyahCore,
     category: "Web Application",
     title: "Niyyah Core",
+    services: ["Website Development", "UI/UX Design"],
+    industry: "Faith & Community",
     desc: "A modern Islamic web application that helps Muslims build consistent worship habits through daily reflection and intentional spiritual growth.",
     liveUrl: "https://niyyah-core.lovable.app",
   },
@@ -94,24 +110,32 @@ const projects: Project[] = [
     img: p3,
     category: "Mobile App",
     title: "Muni Finance",
+    services: ["Mobile App Development", "UI/UX Design"],
+    industry: "Finance",
     desc: "A minimal, fast personal finance app for iOS & Android.",
   },
   {
     img: p4,
     category: "AI Automation",
     title: "Asalon Workflows",
+    services: ["AI Automation"],
+    industry: "SaaS & Startups",
     desc: "Visual AI workflow builder saving 20+ hours a week.",
   },
   {
     img: p5,
     category: "Website",
     title: "Marta Filly Kitchen",
+    services: ["Website Development"],
+    industry: "Food & Hospitality",
     desc: "Story-driven restaurant site with reservations.",
   },
   {
     img: p6,
     category: "Branding",
     title: "The Naide Identity",
+    services: ["Brand Identity"],
+    industry: "Creative & Studio",
     desc: "A complete brand system for a luxury studio.",
   },
 ];
