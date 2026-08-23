@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { GOOGLE_SITE_VERIFICATION, ORGANIZATION_SCHEMA } from "@/lib/seo";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 
