@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 const WHATSAPP_URL =
-  "https://wa.me/2348084321154?text=Hi%20Jerry!%20I%20found%20your%20portfolio%20and%20I'm%20interested%20in%20working%20with%20you%20on%20a%20project.";
+  "https://wa.me/2348084321154?text=Hi%20Fadyn!%20I%20found%20your%20portfolio%20and%20I'm%20interested%20in%20working%20with%20you%20on%20a%20project.";
 
 const SESSION_KEY = "wa_bubble_dismissed";
 
