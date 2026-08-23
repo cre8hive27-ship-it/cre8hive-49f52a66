@@ -92,20 +92,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
+      ...(GOOGLE_SITE_VERIFICATION
+        ? [
+            {
+              name: "google-site-verification",
+              content: GOOGLE_SITE_VERIFICATION,
+            },
+          ]
+        : []),
     ],
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Cre8Hive",
-          url: "https://cre8hive.lovable.app",
-          slogan: "Create • Build • Grow",
-          description:
-            "Digital agency building AI-powered websites, apps, automations and brands.",
-          email: "hello@cre8hive.com",
-        }),
+        children: JSON.stringify(ORGANIZATION_SCHEMA),
       },
     ],
     links: [
